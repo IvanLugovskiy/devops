@@ -1,0 +1,19 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build backend1
+        run: docker build ./backend1 -t backend1
+
+      - name: Build backend2
+        run: docker build ./backend2 -t backend2
