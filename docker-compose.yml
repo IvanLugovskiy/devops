@@ -2,7 +2,7 @@ services:
 
 
   backend1:
-    build: ./backend1
+    image: ivanlegovskiy/backend1:latest
     restart: always
     healthcheck:
       test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
@@ -11,7 +11,7 @@ services:
       retries: 3
  
   backend2:
-    build: ./backend2
+    image: ivanlegovskiy/backend2:latest
     restart: always
     healthcheck:
       test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
