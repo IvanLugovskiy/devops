@@ -12,8 +12,20 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Build backend1
-        run: docker build ./backend1 -t backend1
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build backend2
-        run: docker build ./backend2 -t backend2
+      - name: Build and push backend1
+        run: |
+          docker build ./backend1 -t ${{ secrets.DOCKERHUB_USERNAME }}/backend1:latest
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/backend1:latest
+
+
+      - name: Build and push backend2
+        run: |
+          docker build ./backend2 -t ${{ secrets.DOCKERHUB_USERNAME }}/backend2:latest
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/backend2:latest
+
