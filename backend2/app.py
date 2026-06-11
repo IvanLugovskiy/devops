@@ -5,7 +5,7 @@ class Handler(BaseHTTPRequestHandler):
         if self.path == "/health":
             body = b"OK\n"
         else:
-            body = b"Hello from backend app2\n"
+            body = b"Hello from backend app2 v2\n"
             
         
         self.send_response(200)
