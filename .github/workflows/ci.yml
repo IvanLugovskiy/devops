@@ -20,12 +20,14 @@ jobs:
 
       - name: Build and push backend1
         run: |
-          docker build ./backend1 -t ${{ secrets.DOCKERHUB_USERNAME }}/backend1:latest
+          docker build ./backend1 -t ${{ secrets.DOCKERHUB_USERNAME }}/backend1:latest -t ${{ secrets.DOCKERHUB_USERNAME }}/backend1:v${{ github.run_number }}
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/backend1:latest
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/backend1:v${{ github.run_number }}
 
 
       - name: Build and push backend2
         run: |
-          docker build ./backend2 -t ${{ secrets.DOCKERHUB_USERNAME }}/backend2:latest
+          docker build ./backend2 -t ${{ secrets.DOCKERHUB_USERNAME }}/backend2:latest -t ${{ secrets.DOCKERHUB_USERNAME }}/backend2:v${{ github.run_number }}
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/backend2:latest
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/backend2:v${{ github.run_number }}
 
